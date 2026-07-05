@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Registration Form</title>
+    <link rel="stylesheet" href="app.css">
+</head>
+<body>
+
+<div class="container">
+    <form id="registerForm">
+
+        <h1>Registration</h1>
+
+        <div class="input-grid">
+
+            <div class="input-box">
+                <input type="text" id="name" placeholder="Full Name" required>
+                <span class="error" id="nameError"></span>
+            </div>
+
+            <div class="input-box">
+                <input type="text" id="username" placeholder="Username" required>
+            </div>
+
+            <div class="input-box">
+                <input type="email" id="email" placeholder="Email" required>
+                <span class="error" id="emailError"></span>
+            </div>
+
+            <div class="input-box">
+                <input type="tel" id="phone" placeholder="Phone Number" required>
+                <span class="error" id="phoneError"></span>
+            </div>
+
+            <div class="input-box">
+                <input type="password" id="password" placeholder="Password" required>
+                <span class="error" id="passwordError"></span>
+            </div>
+
+            <div class="input-box">
+                <input type="password" id="confirmPassword"
+                       placeholder="Confirm Password" required>
+                <span class="error" id="confirmPasswordError"></span>
+            </div>
+
+        </div>
+
+        <div class="checkbox">
+            <input type="checkbox" id="news">
+            <label for="news">
+                Send me e-mails about the News.
+            </label>
+        </div>
+
+        <button type="submit" class="registerbtn">
+            Register
+        </button>
+
+        <p id="successMessage"></p>
+
+    </form>
+</div>
+
+<script>
+
+const form = document.getElementById("registerForm");
+
+const nameInput = document.getElementById("name");
+const emailInput = document.getElementById("email");
+const phoneInput = document.getElementById("phone");
+const passwordInput = document.getElementById("password");
+const confirmPasswordInput =
+document.getElementById("confirmPassword");
+
+function validateName() {
+
+    if(nameInput.value.trim() === "") {
+
+        document.getElementById("nameError").textContent =
+        "Full Name is required";
+
+        return false;
+    }
+
+    document.getElementById("nameError").textContent = "";
+    return true;
+}
+
+function validateEmail() {
+
+    const emailPattern =
+    /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+    if(emailInput.value.trim() === "") {
+
+        document.getElementById("emailError").textContent =
+        "Email is required";
+
+        return false;
+    }
+
+    if(!emailPattern.test(emailInput.value)) {
+
+        document.getElementById("emailError").textContent =
+        "Enter a valid email address";
+
+        return false;
+    }
+
+    document.getElementById("emailError").textContent = "";
+    return true;
+}
+
+function validatePhone() {
+
+    const phonePattern = /^[0-9]{10}$/;
+
+    if(!phonePattern.test(phoneInput.value)) {
+
+        document.getElementById("phoneError").textContent =
+        "Phone number must be exactly 10 digits";
+
+        return false;
+    }
+
+    document.getElementById("phoneError").textContent = "";
+    return true;
+}
+
+function validatePassword() {
+
+    const password = passwordInput.value;
+
+    const strongPassword =
+    /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{8,}$/;
+
+    if(!strongPassword.test(password)) {
+
+        document.getElementById("passwordError").textContent =
+        "Password must contain 8+ characters, uppercase, lowercase and a number";
+
+        return false;
+    }
+
+    document.getElementById("passwordError").textContent = "";
+    return true;
+}
+
+function validateConfirmPassword() {
+
+    if(passwordInput.value !== confirmPasswordInput.value) {
+
+        document.getElementById("confirmPasswordError").textContent =
+        "Passwords do not match";
+
+        return false;
+    }
+
+    document.getElementById("confirmPasswordError").textContent = "";
+    return true;
+}
+
+nameInput.addEventListener("input", validateName);
+emailInput.addEventListener("input", validateEmail);
+phoneInput.addEventListener("input", validatePhone);
+passwordInput.addEventListener("input", validatePassword);
+confirmPasswordInput.addEventListener(
+    "input",
+    validateConfirmPassword
+);
+
+nameInput.addEventListener("blur", validateName);
+emailInput.addEventListener("blur", validateEmail);
+phoneInput.addEventListener("blur", validatePhone);
+passwordInput.addEventListener("blur", validatePassword);
+confirmPasswordInput.addEventListener(
+    "blur",
+    validateConfirmPassword
+);
+
+const allInputs = document.querySelectorAll("input");
+
+allInputs.forEach(input => {
+    input.addEventListener("input", () => {
+        document.getElementById("successMessage").textContent = "";
+    });
+});
+
+form.addEventListener("submit", function(e){
+
+    e.preventDefault();
+
+    const isValid =
+        validateName() &&
+        validateEmail() &&
+        validatePhone() &&
+        validatePassword() &&
+        validateConfirmPassword();
+
+    if(isValid){
+
+        document.getElementById("successMessage").textContent =
+        "🎉 Registration Successful!";
+
+        form.reset();
+    }
+});
+
+</script>
+
+</body>
+</html>

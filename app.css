@@ -1,0 +1,200 @@
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:"Times New Roman", Times, serif;
+}
+
+body{
+    min-height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+
+    background:url("background.jpeg");
+    background-size:cover;
+    background-position:center;
+    background-repeat:no-repeat;
+}
+
+
+.container{
+
+    width:850px;
+    max-width:95%;
+
+    padding:40px;
+
+    background:rgba(255,255,255,0.35);
+
+    backdrop-filter:blur(18px);
+    -webkit-backdrop-filter:blur(18px);
+
+    border:1px solid rgba(255,255,255,0.2);
+
+    border-radius:20px;
+
+    box-shadow:
+    0 8px 32px rgba(0,0,0,0.3);
+}
+
+h1{
+    text-align:center;
+    color:#4B0082;
+    margin-bottom:35px;
+    font-size:40px;
+    letter-spacing:1px;
+
+    text-shadow:
+    0 2px 10px rgba(0,0,0,0.25);
+}
+
+.input-grid{
+
+    display:grid;
+
+    grid-template-columns:
+    repeat(2,1fr);
+
+    gap:25px;
+}
+
+.input-box{
+
+    display:flex;
+    flex-direction:column;
+}
+
+.input-box input{
+
+    width:100%;
+
+    padding:15px 20px;
+
+    background:transparent;
+
+    border:2px solid rgba(255,255,255,0.5);
+
+    border-radius:10px;
+
+    color:#333;
+
+    font-size:18px;
+
+    text-shadow:
+    0 1px 2px rgba(0,0,0,0.2);
+
+    transition:0.3s;
+}
+
+.input-box input::placeholder{
+
+    color:rgba(#666);
+}
+
+.input-box input:hover{
+
+    border-color:rgba(255,255,255,0.8);
+}
+
+.input-box input:focus{
+
+    outline:none;
+
+    border-color:white;
+
+    box-shadow:
+    0 0 10px rgba(255,255,255,0.4);
+}
+
+.checkbox{
+
+    margin:25px 0;
+
+    color:#333;
+
+    font-size:18px;
+
+    text-shadow:
+    0 1px 3px rgba(0,0,0,0.3);
+}
+
+.checkbox label{
+
+    margin-left:8px;
+}
+
+.registerbtn{
+
+    width:100%;
+
+    padding:15px;
+
+    border:none;
+
+    border-radius:30px;
+
+    background:white;
+
+    color:#333;
+
+    font-size:20px;
+
+    font-weight:bold;
+
+    cursor:pointer;
+
+    transition:0.3s;
+}
+
+.registerbtn:hover{
+
+    transform:translateY(-2px);
+
+    background:#f5f5f5;
+}
+
+.error{
+
+    color:#da3c3c;
+
+    font-size:14px;
+
+    margin-top:5px;
+
+    min-height:18px;
+}
+
+#successMessage{
+
+    color:#2c942c;
+
+    text-align:center;
+
+    margin-top:15px;
+
+    font-weight:bold;
+
+    font-size:20px;
+
+    text-shadow:
+    0 1px 3px rgba(0,0,0,0.3);
+}
+
+@media(max-width:768px){
+
+    .input-grid{
+
+        grid-template-columns:1fr;
+    }
+
+    h1{
+
+        font-size:32px;
+    }
+
+    .container{
+
+        padding:25px;
+    }
+}
